@@ -1,0 +1,7 @@
+.idea/
+*.iws
+
+node_modules/
+npm-debug.log
+
+bundle/bundle*
