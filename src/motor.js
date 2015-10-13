@@ -1,9 +1,7 @@
-(function (window) {
-    var Motor = {};
+var Motor = {};
 
-    if (!window) {
-        module.exports = Motor;
-    } else {
-        window.Motor = Motor;
-    }
-})(window);
+if (window) {
+    window.Motor = Motor;
+} else {
+    module.exports = Motor;
+}
