@@ -5,8 +5,8 @@
   "main": "src/motor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "watchify src/motor.js -o motor.dev.js -d -v",
-    "prod": "browserify src/motor.js -o motor.dev.js && uglifyjs motor.dev.js --screw-ie8 -c -m -o motor.min.js"
+    "dev": "watchify src/motor.es6 -t babelify -o motor.dev.js -d -v",
+    "prod": "browserify src/motor.es6 -t babelify -o motor.dev.js && uglifyjs motor.dev.js --screw-ie8 -c -m -o motor.min.js"
   },
   "keywords": [
     "data",
@@ -28,6 +28,7 @@
   "/* comment-02 */": "-------------------- /UPDATE THIS! --------------------",
   "license": "ISC",
   "devDependencies": {
+    "babelify": "^6.3.0",
     "browserify": "^11.2.0",
     "uglify-js": "^2.5.0",
     "watchify": "^3.4.0"

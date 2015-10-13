@@ -1,9 +1,9 @@
-var Helpers = require('./helpers/helpers');
+import Helpers from './helpers/helpers.es6';
 
-var _namePrefix = 'action';
-var _index = 0;
+const _namePrefix = 'action';
+let _index = 0;
 
-var _storage = {};
+const _storage = {};
 
 function _generateName () {
     return Helpers.generateName(_namePrefix, _index);
@@ -25,13 +25,15 @@ function _generateName () {
  * @param {Action} actionFn
  * @constructor
  */
-var Action = function (name, actionFn) {
-    if (!this.name) {
+function Action (name, actionFn) {
+    if (!name) {
         this.name = _generateName();
-        console.warn('[ // Motor.Action ] No name provided for the action; "' + this.name + '" was generated');
+        Helpers.warn('Action', `No name provided for the action; "${this.name}" was generated`);
     } else {
         if (_storage[name]) {
-            throw new ReferenceError('[ // Motor.Action ] Cannot create the action with the name "' + name + '"; it already exists');
+            throw new ReferenceError(
+                Helpers.getSystemMessage('Action', `Cannot create the action with the name "${name}"; it already exists`)
+            );
         }
         this.name = name;
     }
@@ -40,7 +42,7 @@ var Action = function (name, actionFn) {
 
     _storage[this.name] = this;
     _index++;
-};
+}
 
 /**
  * @static
@@ -49,7 +51,7 @@ var Action = function (name, actionFn) {
  */
 Action.get = function (name) {
     if (typeof name === 'string') { return _storage[name]; }
-    else if (name.constructor === Motor.Action) { return name; }
+    else if (name.constructor === Action) { return name; }
     return undefined;
 };
 
@@ -58,4 +60,4 @@ Action.get = function (name) {
  */
 Action.ASYNC = undefined;
 
-module.exports = Action;
+export default Action;
