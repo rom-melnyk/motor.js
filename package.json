@@ -16,16 +16,14 @@
     "framework"
   ],
   "author": "Roman Melnyk <email.rom.melnyk@gmail.com>",
-  "/* comment-01 */": "-------------------- UPDATE THIS! --------------------",
   "bugs": {
     "url": "https://github.com/rom-melnyk/motor.js/issues",
-    "eamil": "email.rom.melnyk@gmail.com"
+    "email": "email.rom.melnyk@gmail.com"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rom-melnyk/motor.js"
   },
-  "/* comment-02 */": "-------------------- /UPDATE THIS! --------------------",
   "license": "ISC",
   "devDependencies": {
     "babelify": "^6.3.0",
