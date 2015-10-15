@@ -1,5 +1,5 @@
 {
-  "name": "motoR",
+  "name": "Motor.JS",
   "version": "0.0.1",
   "description": "Data flow framework",
   "main": "src/motor.js",

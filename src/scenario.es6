@@ -1,10 +1,13 @@
-var _namePrefix = 'scenario-';
-var _index = 0;
+import Helpers from './helpers/helpers.es6';
+import Action from './action.es6';
 
-var _storage = {};
+const _namePrefix = 'scenario';
+let _index = 0;
+
+const _storage = {};
 
 function _generateName () {
-    return _namePrefix + _index;
+    return Helpers.generateName(_namePrefix, _index);
 }
 
 /**
@@ -13,29 +16,36 @@ function _generateName () {
  * @param {...Action|String} [actions]
  * @constructor
  */
-var Scenario = function (name, actions) {
-    actions = Array.prototype.slice.call(arguments, 1);
-
+function Scenario (name, actions) {
     if (!this.name) {
         this.name = _generateName();
-        console.warn('[ // Motor.Scenario ] No name provided for the action; "' + this.name + '" was generated');
+        console.warn('Scenario', `No name provided for the scenario; "${this.name}" was generated`);
     } else {
         if (_storage[name]) {
-            throw new ReferenceError('[ // Motor.Scenario ] Cannot create the scenario with the name "' + name + '"; it already exists');
+            throw new ReferenceError(
+                Helpers.getSystemMessage('Scenario', `Cannot create the scenario with the name "${name}"; it already exists`)
+            );
         }
         this.name = name;
     }
 
     this.actions = [];
+    let self = this;
     Array.prototype.slice.call(arguments, 1).forEach(function (action, idx) {
-        action = Motor.Action.get(action);
+        action = Action.get(action);
         if (!action) {
-            console.warn('[ // Motor.Scenario ] ')
+            Helpers.warn(`Scenario "${self.name}"`, `The argument #${idx} is not an action; ignored`);
+        } else {
+            self.actions.push(action);
         }
     });
 
     _storage[this.name] = this;
     _index++;
+}
+
+Scenario.prototype.run = function () {
+
 };
 
 /**
@@ -49,4 +59,4 @@ Scenario.get = function (name) {
     return undefined;
 };
 
-module.exports = Scenario;
+export default Scenario;
