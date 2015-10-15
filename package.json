@@ -15,11 +15,14 @@
     "inter-component",
     "framework"
   ],
-  "author": "Roman Melnyk <email.rom.melnyk@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/rom-melnyk/motor.js/issues",
+  "author": {
+    "name": "Roman Melnyk",
     "email": "email.rom.melnyk@gmail.com",
     "url": "https://codedoc255.wordpress.com"
+  },
+  "bugs": {
+    "url": "https://github.com/rom-melnyk/motor.js/issues",
+    "email": "email.rom.melnyk@gmail.com"
   },
   "repository": {
     "type": "git",
