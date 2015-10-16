@@ -11,6 +11,25 @@ function _generateName () {
 }
 
 /**
+ * Convert the sequence of actions/strings into sequence of actions
+ * @param {Action[]|String[]} args
+ */
+function retrieveActions(args) {
+    let actions = [];
+
+    args.forEach(function (action, idx) {
+        action = Action.get(action);
+        if (!action) {
+            Helpers.warn(`Scenario "${self.name}"`, `The argument #${idx} is not an action; ignored`);
+        } else {
+            actions.push(action);
+        }
+    });
+
+    return actions;
+}
+
+/**
  * A constructor for the Scenario instance.
  * @param {String} [name]
  * @param {...Action|String} [actions]
@@ -29,23 +48,28 @@ function Scenario (name, actions) {
         this.name = name;
     }
 
-    this.actions = [];
-    let self = this;
-    Array.prototype.slice.call(arguments, 1).forEach(function (action, idx) {
-        action = Action.get(action);
-        if (!action) {
-            Helpers.warn(`Scenario "${self.name}"`, `The argument #${idx} is not an action; ignored`);
-        } else {
-            self.actions.push(action);
-        }
-    });
+    this.actions = retrieveActions( Array.prototype.slice.call(arguments, 1) );
 
     _storage[this.name] = this;
     _index++;
 }
 
-Scenario.prototype.run = function () {
-
+Scenario.prototype.run = function (input) {
+    let result;
+    for (let i = 0; i < this.actions.length; i++) {
+        result = this.actions[i].payload(input, (input) => {
+            if (input === undefined) {
+                // stop running the scenario
+            } else {
+                // i++
+                // this.actions[i];
+                // ^^^ ()
+            }
+        });
+        if (result === undefined) {
+            break; // stop running the scenario when the action returns `undefined`
+        }
+    }
 };
 
 /**
