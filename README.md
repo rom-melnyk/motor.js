@@ -11,6 +11,14 @@ Even asynchronous activities lead to linear expectations.
 
 ## Development
 
-`npm install -g instant-server`
+#### Running the demo page
+* `npm install -g instant-server`
+* run instant in `demo/` and you'll be able to run the demo page
 
-##
+#### Developing
+* run `npm run dev`; that automatically compiles all the source files once you edit any
+
+## Author
+
+Roman Melnyk <email.rom.melnyk@gmail.com>
+[https://codedoc255.wordpress.com/](https://codedoc255.wordpress.com/)
