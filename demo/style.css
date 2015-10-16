@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    padding: 1em;
+    color: #888;
+}
+
+section {
+    margin-bottom: 1em;
+    padding: 0 1em 1em;
+    background-color: #efefef;
+}
+
+section:first-child {
+    margin-top: 1em;
+}
+
+section > header:first-child {
+    margin: 0 -1em 1em -1em;
+    padding: .3em 1em;
+    font-weight: bold;
+    background-color: #dedede;
+    color: #fff;
+}
+
+input[type=text] {
+    padding: .4em;
+    background-color: #fff;
+    border: 0 none;
+}
