@@ -55,8 +55,32 @@ function Scenario (name, actions) {
 }
 
 Scenario.prototype.run = function (input) {
-    let result;
+    if (this.actions.length === 0) { return input; }
+
+    let result = input;
+    let i = 0;
+
+    do {
+        result = this.actions[i].run(result);
+        i++;
+    } while (i < this.actions.length && result !== undefined);
+
+
+    // ------------ ------------ ------------
+    // TODO async actions!
+    // ------------ ------------ ------------
+    /*let next;
     for (let i = 0; i < this.actions.length; i++) {
+        next = (action, idx) => {
+            return (input) => {
+                if (input === undefined) {
+                    // terminate the scenario
+                } else {
+                    // this.actions[i + 1]
+                }
+            }
+        };
+
         result = this.actions[i].payload(input, (input) => {
             if (input === undefined) {
                 // stop running the scenario
@@ -69,7 +93,7 @@ Scenario.prototype.run = function (input) {
         if (result === undefined) {
             break; // stop running the scenario when the action returns `undefined`
         }
-    }
+    }*/
 };
 
 /**

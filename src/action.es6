@@ -38,7 +38,9 @@ function Action (name, actionFn) {
         this.name = name;
     }
 
-    this.payload = typeof actionFn === 'function' ? actionFn : function () {};
+    let payload = typeof actionFn === 'function' ? actionFn : (input) => input;
+
+    this.run = (input, next) => payload(input, next);
 
     _storage[this.name] = this;
     _index++;
