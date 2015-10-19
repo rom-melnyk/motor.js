@@ -4,8 +4,10 @@ const Motor = {
     Action
 };
 
-if (window) {
+try {
     window.Motor = Motor;
-} else {
-    module.exports = Motor;
+} catch (err) {
+    // Node environment
 }
+
+export default Motor;
