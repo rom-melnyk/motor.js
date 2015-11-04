@@ -12,12 +12,19 @@ Even asynchronous activities lead to linear expectations.
 
 ## Development
 
+#### Prerequisites
+
+* Install the **instant-server:** `npm install -g instant-server`
+
+
 #### Running the demo page
-* `npm install -g instant-server`
-* run instant in `demo/` and you'll be able to run the demo page
+
+* Run `instant -p 8080 ./demo/`;
+* Open [http://localhost:8080/index.html](http://localhost:8080/index.html) in the browser
 
 #### Developing
-* run `npm run dev`; that automatically compiles all the source files once you edit any
+
+* Run `npm run dev`; it automatically compiles all the source files once you edit any _(hot update enabled)._
 
 ## Author
 
